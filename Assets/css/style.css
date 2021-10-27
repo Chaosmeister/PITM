@@ -1,0 +1,9 @@
+.markdown img {
+    display: inline!important;
+}
+
+img.enlargable {
+    max-width: 300px;
+    max-height: 300px;
+    cursor: zoom-in;
+}
