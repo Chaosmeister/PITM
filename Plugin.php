@@ -54,5 +54,4 @@ class Plugin extends Base
     {
         return "https://github.com/Chaosmeister/PITM"
     }
-    
 }
