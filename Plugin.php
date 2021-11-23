@@ -49,4 +49,10 @@ class Plugin extends Base
     {
         return 'enable pasting images to markdown-enbaled textfields';
     }
+    
+    public function getPluginHomepage()
+    {
+        return "https://github.com/Chaosmeister/PITM"
+    }
+    
 }
