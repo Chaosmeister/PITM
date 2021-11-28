@@ -52,6 +52,6 @@ class Plugin extends Base
     
     public function getPluginHomepage()
     {
-        return "https://github.com/Chaosmeister/PITM"
+        return "https://github.com/Chaosmeister/PITM";
     }
 }
