@@ -57,22 +57,20 @@ class PasteFileModel extends FileModel
 
     public function moveImagesToTask($taskId)
     {
+        $imagenumber = 0;
         $task = $this->taskFinderModel->getById($taskId);
 
         $description = $task['description'];
         $needle = '<PITM:';
         $found = strpos($description, $needle);
 
-        if ($found !== false)
-        {
+        if ($found !== false) {
             $needleEnd = '>';
-            while ($found !== false)
-            {
+            while ($found !== false) {
                 $start = $found + 6;
                 $end = strpos($description, $needleEnd, $start);
 
-                if ($end === false)
-                {
+                if ($end === false) {
                     return;
                 }
 
@@ -83,16 +81,14 @@ class PasteFileModel extends FileModel
                 $fileName = substr($description, $start, $fileNameLenght);
                 $link = '';
 
-                try
-                {
+                try {
+                    ++$imagenumber;
                     $data = $this->objectStorage->get($fileName);
                     $this->objectStorage->remove($fileName);
-                    $filePath = $this->taskFileModel->uploadScreenshot($taskId, $data);
+                    $filePath = $this->taskFileModel->uploadContent($taskId, $imagenumber . ".png", $data);
 
                     $link = '<img src="?controller=FileViewerController&action=image&task_id=' . $taskId . '&file_id=' . $filePath . '" class="enlargable" />';
-                }
-                catch (ObjectStorageException $e)
-                {
+                } catch (ObjectStorageException $e) {
                     $this->logger->error($e->getMessage());
                 }
 
