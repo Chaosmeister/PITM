@@ -22,12 +22,10 @@ KB.on('dom.ready', function () {
                 }
 
                 function onFileLoaded(e) {
-                    const urlParams = new URLSearchParams(window.location.search);
-
                     var link = '?controller=PasteController&action=upload&plugin=PITM';
                     KB.http.postJson(link, {
                         'data': e.target.result,
-                        'task_id': urlParams.get('task_id'),
+                        'task_id': getTaskId(),
                         'path': path
                     }).success(IntoTextArea);
                 }
@@ -49,6 +47,33 @@ KB.on('dom.ready', function () {
                 }
             }
         }
+    }
+
+    function getTaskId(){
+        var urlParamId = new URLSearchParams(window.location.search).get('task_id');
+        if (urlParamId){
+            return urlParamId;
+        }
+
+        var urlHrefId = window.location.href.replace(/.*\/task\/(\d+)\/*\?*.*/ig, "$1");
+        if (urlHrefId != window.location.href){
+            return urlHrefId;
+        }
+
+        var urlPostId;
+        var forms = document.getElementsByTagName("form");
+        for (var i = 0; i < forms.length; i++){
+            if (forms[i].getAttribute("method").toLowerCase() == "post" && 
+                forms[i].getAttribute("action").toLowerCase().indexOf("task_id=") >= 0){
+                    urlPostId = forms[i].getAttribute("action").replace(/.*task_id=(\d+).*/ig, "$1");
+                    break;
+            }
+        }
+        if (urlPostId){
+            return urlPostId;
+        }
+
+        return "";
     }
 
     function Enlarge(e) {
