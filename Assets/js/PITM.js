@@ -23,11 +23,20 @@ KB.on('dom.ready', function () {
 
                 function onFileLoaded(e) {
                     var link = '?controller=PasteController&action=upload&plugin=PITM';
-                    KB.http.postJson(link, {
+
+                    var json = {
                         'data': e.target.result,
-                        'task_id': getTaskId(),
                         'path': path
-                    }).success(IntoTextArea);
+                    };
+
+                    var TaskId =  getTaskId();
+
+                    if (TaskId)
+                    {
+                        json['task_id'] = TaskId
+                    }
+
+                    KB.http.postJson(link, json).success(IntoTextArea);
                 }
 
                 if (e.clipboardData && e.clipboardData.items) {
@@ -72,8 +81,6 @@ KB.on('dom.ready', function () {
         if (urlPostId){
             return urlPostId;
         }
-
-        return "";
     }
 
     function Enlarge(e) {

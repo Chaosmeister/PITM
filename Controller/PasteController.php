@@ -11,10 +11,10 @@ class PasteController extends BaseController
         $values = $this->request->getJson();
         $base64Image = explode(',', $values['data'])[1];
 
-        $taskId = $values['task_id'];
-
-        if (isset($taskId))
+        if (isset($values['task_id']))
         {
+            $taskId = $values['task_id'];
+            
             $ImageId = $this->taskFileModel->uploadScreenshot($taskId, $base64Image);
 
             if ($ImageId)
