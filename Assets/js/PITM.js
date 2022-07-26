@@ -21,7 +21,7 @@ KB.on('dom.ready', function () {
                     var position = activeElement.selectionStart;
                     var value = activeElement.value;
                     
-                    activeElement.value = value.slice(0, position) + data + value(position);
+                    activeElement.value = value.slice(0, position) + data + value.slice(position);
                 }
 
                 function onFileLoaded(e) {
