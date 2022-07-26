@@ -18,7 +18,10 @@ KB.on('dom.ready', function () {
             if (inputs.indexOf(activeElement.tagName.toLowerCase()) !== -1) {
 
                 function IntoTextArea(data) {
-                    activeElement.value += data;
+                    var position = activeElement.selectionStart;
+                    var value = activeElement.value;
+                    
+                    activeElement.value = value.slice(0, position) + data + value(position);
                 }
 
                 function onFileLoaded(e) {
