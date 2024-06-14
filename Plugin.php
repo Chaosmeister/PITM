@@ -42,7 +42,9 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.0.3';
+        // 1.1.0 - remove custom image box implementation: the image isn't displayed anymore in Firefox 126 & 127
+        //         just display the result from the image controller. 
+        return '1.1.0';
     }
 
     public function getPluginDescription()
