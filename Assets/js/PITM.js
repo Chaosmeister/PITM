@@ -87,26 +87,7 @@ KB.on('dom.ready', function () {
     }
 
     function Enlarge(e) {
-
-        const winHtml =
-            '<html>' +
-            '<head>' +
-            '<meta name="viewport" content="width=device-width, minimum-scale=0.1">' +
-            '<title>Image</title>' +
-            '<style>* { margin: 0;padding: 0; } .imgbox { background-color: 000; display: grid; height: 100%; } .center-fit { max-width: 500%; max-height: 500vh; margin: auto; }</style>' +
-            '</head>' +
-            '<body>' +
-            '<div class="imgbox">' +
-            '<img class="center-fit" src="' + e.target.src + '"/>' +
-            '</div>' +
-            '</body>' +
-            '</html>';
-
-        const winUrl = URL.createObjectURL(
-            new Blob([winHtml], { type: "text/html" })
-        );
-
-        window.open(winUrl);
+        window.open(e.target.src);
     }
 
     KB.onClick('.enlargable', Enlarge, !0);
