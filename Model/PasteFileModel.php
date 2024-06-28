@@ -87,7 +87,7 @@ class PasteFileModel extends FileModel
                     $this->objectStorage->remove($fileName);
                     $filePath = $this->taskFileModel->uploadContent($taskId, $imagenumber . ".png", $data);
 
-                    $link = '<img src="?controller=FileViewerController&action=image&task_id=' . $taskId . '&file_id=' . $filePath . '" class="enlargable" />';
+                    $link = '<img src="?controller=FileViewerController&amp;action=image&amp;task_id=' . $taskId . '&amp;file_id=' . $filePath . '" class="enlargable">';
                 } catch (ObjectStorageException $e) {
                     $this->logger->error($e->getMessage());
                 }

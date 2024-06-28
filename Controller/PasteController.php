@@ -19,7 +19,7 @@ class PasteController extends BaseController
 
             if ($ImageId)
             {
-                $this->response->html('<img src="?controller=FileViewerController&action=image&task_id=' . $taskId . '&file_id=' . $ImageId . '" class="enlargable" />');
+                $this->response->html('<img src="?controller=FileViewerController&amp;action=image&amp;task_id=' . $taskId . '&amp;file_id=' . $ImageId . '" class="enlargable">');
             }
         }
         else
